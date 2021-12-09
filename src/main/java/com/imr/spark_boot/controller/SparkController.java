@@ -1,6 +1,7 @@
 package com.imr.spark_boot.controller;
 
 import com.imr.spark_boot.enums.SplitEnum;
+import com.imr.spark_boot.service.ExactContentSerivce;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -33,14 +34,16 @@ public class SparkController {
     private ResourceLoader resourceLoader;
     private JavaSparkContext sparkContext;
     private SparkSession sparkSession;
+    private ExactContentSerivce exactContentSerivce;
 
     private static Logger Log = LoggerFactory.getLogger(SparkController.class);
 
     @Autowired
-    public SparkController(ResourceLoader resourceLoader, JavaSparkContext sparkContext,SparkSession sparkSession){
+    public SparkController(ResourceLoader resourceLoader, JavaSparkContext sparkContext,SparkSession sparkSession,ExactContentSerivce exactContentSerivce){
         this.resourceLoader = resourceLoader;
         this.sparkContext = sparkContext;
         this.sparkSession = sparkSession;
+        this.exactContentSerivce = exactContentSerivce;
     }
 
     @GetMapping
@@ -52,7 +55,7 @@ public class SparkController {
 
         //TransFormations
         JavaRDD<String> titles = videos
-                .map(SparkController::exactTitle)
+                .map(exactContentSerivce::exactTitle)
                 .filter(StringUtils::isNotBlank);
 
 
@@ -68,26 +71,14 @@ public class SparkController {
         configuration.set("fs.default.name","hdfs://172.27.201.69:9000");
 
         FileSystem fs = FileSystem.get(configuration);
-        Path readDirPath = new Path("/user/cctv");
         RemoteIterator<LocatedFileStatus> files = fs.listFiles(new Path("/user/cctv"), true);
         while(files.hasNext()){
             Log.info(files.next().getPath().toUri().toString());
         }
 //        Dataset<Row> rows = sparkSession.read().parquet("hdfs://172.27.201.69:9000");
-
-
-
     }
 
 
-    public static String exactTitle(String textLine) {
-        try {
-            return textLine.split(SplitEnum.COMMA_DELIMITER.getName())[0];
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
 
-        }
-    }
 
 }
