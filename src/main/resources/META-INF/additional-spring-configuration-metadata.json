@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "msg.addr",
+      "type": "java.lang.String",
+      "description": "Description for msg.addr."
+  }
+] }
