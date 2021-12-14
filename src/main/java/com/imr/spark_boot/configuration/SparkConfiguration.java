@@ -11,16 +11,16 @@ public class SparkConfiguration {
 
     @Bean
     protected SparkConf createSparkConfiguration(){
-        return  new SparkConf()
-                .setMaster("local[2]")
-                .setAppName("cctv");
+        return new SparkConf()
+                .setMaster("spark://172.27.201.69:7077")
+                .setAppName("cctv-application");
     }
 
 
     @Bean
     public SparkSession createSparkSession(){
         return SparkSession.builder()
-                .appName("cctv")
+                .appName("cctv-application")
                 .config(createSparkConfiguration())
                 .getOrCreate();
     }

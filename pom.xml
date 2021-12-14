@@ -56,12 +56,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.11</artifactId>
-			<version>2.0.0</version>
+			<artifactId>spark-core_2.12</artifactId>
+			<version>3.0.3</version>
 		</dependency>
-<!--		Kafka-->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.12</artifactId>
+			<version>3.0.3</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--		Kafka-->
 		<!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
@@ -81,22 +91,26 @@
 			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.11</artifactId>
-			<version>2.0.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.netty</groupId>
-					<artifactId>netty-all</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-all</artifactId>
-			<version>4.1.17.Final</version>
-		</dependency>
+
+<!--		<dependency>-->
+<!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.spark/spark-sql &ndash;&gt;-->
+<!--			<dependency>-->
+<!--				<groupId>org.apache.spark</groupId>-->
+<!--				<artifactId>spark-sql_2.13</artifactId>-->
+<!--				<version>3.2.0</version>-->
+<!--			</dependency>-->
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<groupId>io.netty</groupId>-->
+<!--					<artifactId>netty-all</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>io.netty</groupId>-->
+<!--			<artifactId>netty-all</artifactId>-->
+<!--			<version>4.1.17.Final</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

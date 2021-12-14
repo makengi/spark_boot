@@ -23,13 +23,5 @@ public class SparkBootApplication {
     public static void main(String[] args) {
         SpringApplication.run(SparkBootApplication.class, args);
 
-//        SparkConf conf = new SparkConf()
-//                .setMaster("local[8]")
-//                .setAppName("cctv");
-//
-//
-//        JavaSparkContext sparkContext = new JavaSparkContext(conf);
-//
-
     }
 }
